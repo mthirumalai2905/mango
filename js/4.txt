@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>String Comparison Methods</title>
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <h1>Compare Two Strings Using Different Methods</h1>
+  
+  <label for="string1">Enter First String: </label>
+  <input type="text" id="string1">
+  <br><br>
+  
+  <label for="string2">Enter Second String: </label>
+  <input type="text" id="string2">
+  <br><br>
+  
+  <button onclick="compareStrings()">Compare</button>
+  
+  <h2>Results:</h2>
+  <div id="results">
+    <h3>Mathematical Operators (==)</h3>
+    <p id="math-operator-result"></p>
+    
+    <h3>Strict Equality Operator (===)</h3>
+    <p id="strict-equality-result"></p>
+    
+    <h3>Using match() Method</h3>
+    <p id="match-method-result"></p>
+    
+    <h3>Using matchAll() Method</h3>
+    <p id="match-all-method-result"></p>
+    
+    <h3>Using localeCompare() Method</h3>
+    <p id="locale-compare-result"></p>
+  </div>
+
+
+  <script>
+    function compareStrings() {
+  const str1 = document.getElementById("string1").value;
+  const str2 = document.getElementById("string2").value;
+
+  // Comparison using mathematical equality (==)
+  const mathOperatorResult = (str1 == str2) ? "Matched" : "Not Matched";
+  document.getElementById("math-operator-result").textContent = mathOperatorResult;
+
+  // Comparison using strict equality (===)
+  const strictEqualityResult = (str1 === str2) ? "Matched" : "Not Matched";
+  document.getElementById("strict-equality-result").textContent = strictEqualityResult;
+
+  // Comparison using match() method
+  const matchMethodResult = str1.match(str2) ? "Matched" : "Not Matched";
+  document.getElementById("match-method-result").textContent = matchMethodResult;
+
+  // Comparison using matchAll() method
+  const matchAllMethodResult = [...str1.matchAll(new RegExp(str2, "g"))].length > 0 ? "Matched" : "Not Matched";
+  document.getElementById("match-all-method-result").textContent = matchAllMethodResult;
+
+  // Comparison using localeCompare() method
+  const localeCompareResult = str1.localeCompare(str2) === 0 ? "Matched" : "Not Matched";
+  document.getElementById("locale-compare-result").textContent = localeCompareResult;
+}
+
+  </script>
+</body>
+</html>
