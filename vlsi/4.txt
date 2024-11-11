@@ -1,0 +1,85 @@
+Expt. 4
+
+-- Modulo-10 Counter with Synchronous Reset : 0 to 9 (0000 to 1001) library IEEE;
+use IEEE.std_logic_1164.all;
+use IEEE.std_logic_unsigned.all;
+
+entity counter is
+port ( CLK : in std_logic;
+RST : in std_logic; -- Synchronous reset input RST active
+ 
+high
+
+end counter;
+ 
+
+Q : out std_logic_vector(3 downto 0));
+ 
+
+architecture counter_arch of counter is signal TEMP_Q : std_logic_vector(3 downto 0); begin
+process(CLK) begin
+if rising_edge(CLK) then -- if clk'event and clk = '1' then
+if RST = '1' then -- active high and it is inside clock therfore its synchronous reset
+TEMP_Q <= (others => '0'); -- TEMP_Q <= "0000"
+else
+if (TEMP_Q = "1001") then
+TEMP_Q <= (others => '0'); -- TEMP_Q <= "0000"
+else
+TEMP_Q <= TEMP_Q + 1; -- up counting end if ;
+end if ; end if;
+end process; Q <= TEMP_Q;
+end counter_arch;
+ 
+LIBRARY ieee;
+USE ieee.std_logic_1164.ALL;
+
+ENTITY counter_tb IS END counter_tb;
+
+ARCHITECTURE behavior OF counter_tb IS
+-- Component Declaration for the Unit Under Test (UUT) COMPONENT counter
+PORT(
+CLK : IN std_logic; RST : IN std_logic;
+Q : OUT std_logic_vector(3 downto 0)
+);
+END COMPONENT;
+
+
+--Inputs
+signal CLK : std_logic := '0'; signal RST : std_logic := '0';
+
+--Outputs
+signal Q : std_logic_vector(3 downto 0);
+
+-- Clock period definitions BEGIN
+
+-- Instantiate the Unit Under Test (UUT) uut: counter PORT MAP (
+CLK => CLK, RST => RST, Q => Q
+);
+
+-- Clock process definitions CLK_process :process
+begin
+ 
+
+
+
+
+end process;
+ 
+CLK <= '0';
+wait for 5 ns; CLK <= '1';
+wait for 5 ns;
+ 
+
+
+-- Stimulus process stim_proc: process begin
+-- hold reset state for 100 ns.
+ 
+RST	<=	'1';	
+		wait	for	20 ns;
+RST	<=	'0';		
+		wait	for	200 ns;
+RST	<=	'1';		
+		wait	for	10 ns;
+RST	<=	'0';		
+		wait	for	300 ns;
+end process; END;
