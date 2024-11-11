@@ -1,0 +1,120 @@
+Expt. 6
+
+
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL; use IEEE.STD_LOGIC_ARITH.ALL;
+use IEEE.STD_LOGIC_UNSIGNED.ALL;
+entity lcd is
+Port ( clk,reset : in std_logic; RS,EN : out std_logic;
+data : out std_logic_vector(7 downto 0));
+end lcd;
+architecture Behavioral of lcd is
+type state_type is (s0,s1,s2,s3,s4,s5,s6,s7,s8,s9,s10,s11, s12,s13,s14,s15,s16,s17,s18,s19,s20,s21,s22,s23);
+signal state:state_type; begin
+process(clk, reset, state) begin
+if reset = '1' then
+state <= s0;
+elsif rising_edge(clk) then if state = s0 then
+state <= s1;
+RS<='0'; -- Write commands to LCD. EN <= '1';
+data <= "00110000"; -- Function set for 8 bit interface, 1 line mode and 5x7 dot matrix.
+end if;
+if state = s1 then
+state <= s2; EN <= '0';
+ 
+
+
+
+
+
+ON.
+ 
+end if;
+if state = s2 then
+state <= s3; EN <= '1';
+data <= "00001111"; -- Display cursor and blinking
+ 
+end if;
+if state = s3 then
+state <= s4; EN <= '0';
+end if;
+if state = s4 then
+state <= s5; EN <= '1';
+data <= "00000001";	-- Clear display.
+end if;
+if state = s5 then
+state <= s6; EN <= '0';
+end if;
+if state = s6 then
+ 
+
+
+
+end if;
+ 
+state <= s7; EN <= '1';
+data <= "10000100"; -- Display address.
+ 
+if state = s7 then
+state <= s8; EN <= '0';
+end if;
+if state = s8 then
+RS <= '1'; -- Write data to LCD. state <= s9;
+EN <= '1';
+data <= "01010111"; --W
+end if;
+if state = s9 then
+state <= s10; EN <= '0';
+end if;
+if state = s10 then
+state <= s11; EN <= '1';
+data <= "01000101"; --E
+end if;
+if state = s11 then
+state <= s12; EN <= '0';
+end if;
+if state = s12 then
+state <= s13; EN <= '1';
+data <= "01001100"; --L
+end if;
+if state = s13 then
+state <= s14; EN <= '0';
+end if;
+if state = s14 then
+state <= s15; EN <= '1';
+data <= "10110000"; --(-)
+end if;
+if state = s15 then
+state <= s16; EN <= '0';
+end if;
+if state = s16 then
+state <= s17; EN <= '1';
+data <= "01000011"; --C
+end if;
+ 
+if state = s17 then
+state <= s18; EN <= '0';
+end if;
+if state = s18 then
+state <= s19; EN <= '1';
+data <= "01001111"; --O
+end if;
+if state = s19 then
+state <= s20; EN <= '0';
+end if;
+if state = s20 then
+state <= s21; EN <= '1';
+data <= "01001101"; --M
+end if;
+if state = s21 then
+state <= s22; EN <= '0';
+end if;
+if state = s22 then
+state <= s23; EN <= '1';
+data <= "01000101"; --E
+end if;
+if state = s23 then
+EN <= '0';
+end if;
+end if; end process;
+end Behavioral;
