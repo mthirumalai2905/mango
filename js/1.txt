@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Area Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .calculator {
+      margin-bottom: 20px;
+    }
+    label, input, button {
+      margin: 5px 0;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <h2>Area Calculator</h2>
+
+  <!-- Triangle Area Calculator -->
+  <div class="calculator">
+    <h3>Triangle Area</h3>
+    <label for="triangle-base">Base:</label>
+    <input type="number" id="triangle-base" placeholder="Enter base">
+    <label for="triangle-height">Height:</label>
+    <input type="number" id="triangle-height" placeholder="Enter height">
+    <button onclick="calculateTriangleArea()">Calculate Triangle Area</button>
+    <p id="triangle-area"></p>
+  </div>
+
+  <!-- Rectangle Area Calculator -->
+  <div class="calculator">
+    <h3>Rectangle Area</h3>
+    <label for="rectangle-length">Length:</label>
+    <input type="number" id="rectangle-length" placeholder="Enter length">
+    <label for="rectangle-width">Width:</label>
+    <input type="number" id="rectangle-width" placeholder="Enter width">
+    <button onclick="calculateRectangleArea()">Calculate Rectangle Area</button>
+    <p id="rectangle-area"></p>
+  </div>
+
+  <!-- Circle Area Calculator -->
+  <div class="calculator">
+    <h3>Circle Area</h3>
+    <label for="circle-radius">Radius:</label>
+    <input type="number" id="circle-radius" placeholder="Enter radius">
+    <button onclick="calculateCircleArea()">Calculate Circle Area</button>
+    <p id="circle-area"></p>
+  </div>
+
+  <script>
+    // Calculate the area of a triangle
+    function calculateTriangleArea() {
+      const base = document.getElementById('triangle-base').value;
+      const height = document.getElementById('triangle-height').value;
+      const area = 0.5 * base * height;
+      document.getElementById('triangle-area').innerText = `Triangle Area: ${area}`;
+    }
+
+    // Calculate the area of a rectangle
+    function calculateRectangleArea() {
+      const length = document.getElementById('rectangle-length').value;
+      const width = document.getElementById('rectangle-width').value;
+      const area = length * width;
+      document.getElementById('rectangle-area').innerText = `Rectangle Area: ${area}`;
+    }
+
+    // Calculate the area of a circle
+    function calculateCircleArea() {
+      const radius = document.getElementById('circle-radius').value;
+      const area = Math.PI * radius * radius;
+      document.getElementById('circle-area').innerText = `Circle Area: ${area.toFixed(2)}`;
+    }
+  </script>
+</body>
+</html>
