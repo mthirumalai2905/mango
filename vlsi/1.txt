@@ -1,0 +1,20 @@
+library IEEE;
+USE IEEE.STD_LOGIC_1164.ALL;
+
+entity fa is
+    PORT (
+    a : in STD_LOGIC;
+    b : in STD_LOGIC;
+    c : in STD_LOGIC;
+    s : out STD_LOGIC;
+    co : out STD_LOGIC;
+    );
+end fa;
+
+architectural Bheavioral of fa is
+
+begin
+s <= a xor b xor cin;
+co <= (a and b) or ( b and cin) or ( a and cin);
+
+end behavioral
