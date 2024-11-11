@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array Manipulation</title>
+</head>
+<body>
+    <h1>Array Manipulation</h1>
+    <div>
+        <h2>Add Element from Array</h2>
+        <input type="text" id="addElement" placeholder="Enter element to add">
+        <button onclick="AddArray()">Add</button>
+        <h3 id="AddResult"></h3>
+        <h5 id="array"></h5>
+    </div>
+    <br><br>
+    <div>
+        <h2>Remove Element from Array</h2>
+        <input type="text" id="removeElement" placeholder="Enter element to remove">
+        <button onclick="removeArray()">Remove</button>
+        <h3 id="removeResult"></h3>
+    </div>
+    <br><br>
+    <div>
+        <h2>Search Element in Array</h2>
+        <input type="text" id="searchElement" placeholder="Enter element to search">
+        <button onclick="searchArray()">Search</button>
+        <h3 id="searchResult"></h3>
+    </div>
+    <script>
+        // let array = ["apple", "banana", "cherry", "date", "elderberry"];
+        let array=[];
+
+function removeArray() {
+    let element = document.getElementById("removeElement").value;
+    let index = array.indexOf(element);
+    if (index !== -1) {
+        array.splice(index, 1);
+        document.getElementById("removeResult").innerText = `Element "${element}" removed. Updated array: ${array}`;
+    } else {
+        document.getElementById("removeResult").innerText = `Element "${element}" not found in array.`;
+    }
+}
+
+function AddArray(){
+    let element = document.getElementById("addElement").value;
+    array.push(element);
+
+    document.getElementById("array").textContent= '';
+
+    for (let i = 0; i < array.length; i++) {
+        // const element = array[i];
+        document.getElementById("array").textContent += `${array[i]} `;
+        
+    }
+    
+    console.log(array);
+
+
+
+}
+function searchArray() {
+    let element = document.getElementById("searchElement").value;
+    if (array.includes(element)) {
+        document.getElementById("searchResult").innerText = `Element "${element}" found in array.`;
+    } else {
+        document.getElementById("searchResult").innerText = `Element "${element}" not found in array.`;
+    }
+}
+
+    </script>
+</body>
+</html>
