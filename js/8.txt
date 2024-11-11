@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simple Home Page</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin: 0;
+        padding: 0;
+      }
+      .content-section {
+        padding: 20px;
+        margin: 10px;
+        border: 1px solid #ccc;
+      }
+      .focus-section {
+        padding: 20px;
+        margin: 10px;
+        border: 1px solid #ccc;
+        background-color: #e1d6d6;
+        outline: none;
+      }
+    </style>
+  </head>
+  <body onmouseover="changeBodyColor()">
+    <h1>Welcome to Our Website</h1>
+    <p>Explore our sections below to learn more about us.</p>
+
+    <div class="content-section">
+      <h2>About Us</h2>
+      <p>Learn about our values and mission.</p>
+    </div>
+
+    <div
+      class="focus-section"
+      tabindex="1"
+      onfocus="changeFocusColor()"
+      onblur="resetFocusColor()"
+    >
+
+    
+      <h2>Our Services</h2>
+      <p>Explore the range of services we provide.</p>
+    </div>
+
+    <div class="content-section">
+      <h2>Contact Us</h2>
+      <p>Get in touch with us for more information.</p>
+    </div>
+
+    <script>
+      // Function to change background color of the entire body on mouse over
+      function changeBodyColor() {
+        document.body.style.backgroundColor = "#b01f1f"; // Light cyan
+      }
+
+      // Function to change background color of the focus-section on focus
+      function changeFocusColor() {
+        const focusSection = document.querySelector(".focus-section");
+        focusSection.style.backgroundColor = "#b2dfdb"; // Light teal
+      }
+
+      // Function to reset background color of the focus-section on blur (when focus is lost)
+      function resetFocusColor() {
+        const focusSection = document.querySelector(".focus-section");
+        focusSection.style.backgroundColor = "#f9f9f9"; // Original color
+      }
+    </script>
+  </body>
+</html>
