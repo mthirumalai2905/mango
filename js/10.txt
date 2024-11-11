@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Browser and Screen Details</title>
+  </head>
+  <body>
+    <h1>Browser and Screen Details</h1>
+    <div>
+      <p><strong>Browser Name:</strong> <span id="browserName"></span></p>
+      <p><strong>Browser Version:</strong> <span id="browserVersion"></span></p>
+      <p><strong>Screen Width:</strong> <span id="screenWidth"></span></p>
+      <p><strong>Screen Height:</strong> <span id="screenHeight"></span></p>
+      <p>
+        <strong>History Length (Stack):</strong>
+        <span id="historyLength"></span>
+      </p>
+      <p>
+        <strong>Number of Paragraph Tags:</strong> <span id="paraCount"></span>
+      </p>
+    </div>
+
+    <h2>Sample Text</h2>
+    <p id="sampleText">This is some text to be replaced.</p>
+    <input type="text" id="newText" placeholder="Enter new text" />
+    <button id="replaceTextButton">Replace Text</button>
+
+    <script>
+      // Get browser name and version
+      const browserNameElement = document.getElementById("browserName");
+      const browserVersionElement = document.getElementById("browserVersion");
+      const userAgent = navigator.userAgent;
+      const browserInfo =
+        userAgent.match(
+          /(firefox|msie|chrome|safari|opr|edg|brave)\/?\s*(\d+)/i
+        ) || [];
+      const browserName = browserInfo[1];
+      const browserVersion = browserInfo[2];
+      browserNameElement.innerText = browserName
+        ? browserName.charAt(0).toUpperCase() + browserName.slice(1)
+        : "Unknown";
+      browserVersionElement.innerText = browserVersion || "Unknown";
+
+      // Display screen width and height
+      document.getElementById("screenWidth").innerText = screen.width;
+      document.getElementById("screenHeight").innerText = screen.height;
+
+      // Display history length
+      document.getElementById("historyLength").innerText = history.length;
+
+      // Count paragraph tags
+      const paraCount = document.getElementsByTagName("p").length;
+      document.getElementById("paraCount").innerText = paraCount;
+
+      // Replace text in paragraph
+      document
+        .getElementById("replaceTextButton")
+        .addEventListener("click", () => {
+          const newText = document.getElementById("newText").value;
+          const sampleTextElement = document.getElementById("sampleText");
+          sampleTextElement.innerText =
+            newText || "The text has been replaced!";
+        });
+    </script>
+  </body>
+</html>
