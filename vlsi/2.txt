@@ -1,0 +1,81 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.STD_LOGIC_ARITH.ALL;
+use IEEE.STD_LOGIC_UNSIGNED.ALL;
+entity ALU_4bit is
+ Port ( a : in STD_LOGIC_VECTOR (3 downto 0);
+ b : in STD_LOGIC_VECTOR (3 downto 0);
+ sel : in STD_LOGIC_VECTOR (2 downto 0);
+ y : out STD_LOGIC_VECTOR (3 downto 0));
+end ALU_4bit;
+architecture Behavioral of ALU_4bit is
+begin
+process (a, b, sel)
+begin
+case sel is
+when "000" => y <= a + b;
+when "001" => y <= a - b;
+when "010" => y <= b - a;
+when "011" => y <= a and b;
+when "100" => y <= a or b;
+when "101" => y <= a nand b;
+when "110" => y <= a xor b;
+when "111" => y <= a nor b;
+when others => null;
+end case;
+end process;
+end Behavioral;
+LIBRARY ieee;
+USE ieee.std_logic_1164.ALL;
+ENTITY ALU_TB IS
+END ALU_TB;
+ARCHITECTURE behavior OF ALU_TB IS 
+ -- Component Declaration for the Unit Under Test (UUT)
+ COMPONENT ALU_4bit
+ PORT(
+ a : IN std_logic_vector(3 downto 0);
+ b : IN std_logic_vector(3 downto 0);
+ sel : IN std_logic_vector(2 downto 0);
+ y : OUT std_logic_vector(3 downto 0)
+ );
+ END COMPONENT;
+ 
+ --Inputs
+ signal a : std_logic_vector(3 downto 0) := (others => '0');
+ signal b : std_logic_vector(3 downto 0) := (others => '0');
+ signal sel : std_logic_vector(2 downto 0) := (others => '0');
+ --Outputs
+ signal y : std_logic_vector(3 downto 0);
+ -- No clocks detected in port list. Replace <clock> below with 
+ -- appropriate port name 
+ BEGIN
+-- Instantiate the Unit Under Test (UUT)
+ uut: ALU_4bit PORT MAP (
+ a => a,
+ b => b,
+ sel => sel,
+ y => y
+ );
+ -- Stimulus process
+ stim_proc: process
+ begin 
+ a <= "1010";
+ b <= "0101";
+ sel <= "000";
+ wait for 10 ns;
+ sel <= "001"; 
+ wait for 10 ns;
+ sel <= "010";
+wait for 10 ns;
+sel <= "011";
+wait for 10 ns;
+sel <= "100";
+wait for 10 ns;
+sel <= "101";
+wait for 10 ns;
+sel <= "110";
+wait for 10 ns;
+sel <= "111";
+wait for 10 ns;
+ end process;
+END;
