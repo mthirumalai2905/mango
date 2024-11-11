@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Multiplication Table</title>
+  </head>
+  <body>
+    <h1>Create Multiplication Table</h1>
+    <input type="number" id="table" placeholder="Enter Number" />
+    <button onclick="create()">Create</button>
+    <h3 id="result"></h3>
+    <script>
+      function create() {
+        let num = document.getElementById("table").value;
+        let arr = [];
+        for (let i = 1; i <= 10; i++) {
+          arr.push(`${num} x ${i} = ${num * i}`);
+        }
+        for (let i = 0; i < arr.length; i++) {
+          document.getElementById("result").innerHTML += `${arr[i]}<br>`;
+        }
+      }
+    </script>
+  </body>
+</html>
