@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Object and Array Manipulation</title>
+    <script src="script.js"></script>
+  </head>
+  <body>
+    <h1>Object and Array Manipulation</h1>
+
+    <label for="fieldName">Field Name:</label>
+    <input type="text" id="fieldName" placeholder="Enter field name" />
+    <br /><br />
+    
+    <label for="fieldValue">Field Value:</label>
+    <input type="text" id="fieldValue" placeholder="Enter field value" />
+    <br /><br />
+    
+    <button onclick="addObject()">Add Object to Array</button>
+    <br /><br />
+    
+    <h3>Array:</h3>
+    <div id="arrayDisplay"></div>
+    <h3>Is it an Array?</h3>
+    <div id="arrayCheckResult"></div>
+
+    <script>
+      let objectArray = [];
+      function addObject() {
+        let fieldName = document.getElementById("fieldName").value;
+        let fieldValue = document.getElementById("fieldValue").value;
+        let obj = {};
+        obj[fieldName] = fieldValue;
+        objectArray.push(obj);
+        displayArray();
+        checkIfArray();
+      }
+      function displayArray() {
+        let display = document.getElementById("arrayDisplay");
+        display.innerHTML = JSON.stringify(objectArray, null, 2);
+      }
+      function checkIfArray() {
+        let result = document.getElementById("arrayCheckResult");
+        result.innerHTML = `Is objectArray an array? ${Array.isArray(objectArray)}`;
+      }
+    </script>
+  </body>
+</html>
